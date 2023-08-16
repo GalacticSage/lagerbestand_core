@@ -1,1 +1,1 @@
-# lagerbestand-cli
+# lagerbestand-core
