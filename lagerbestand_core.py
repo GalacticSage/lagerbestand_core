@@ -1,8 +1,5 @@
 import json
 import pandas as pd
-import openpyxl
-import tkinter
-from tkinter import filedialog
 from datetime import datetime
 
 # Function to read JSON data from a file
@@ -27,20 +24,14 @@ def formatted_data(data):
     return formatted_data
 
 # Function to export data to an Excel file
-def export_to_excel(data):
+def export_to_excel(data, filePath):
     # Construct a list of dictionaries with the desired structure
     data_list = [{"Item": key, "Quantity": value} for key, value in data.items()]
 
     # Create a DataFrame from the list of dictionaries
     df = pd.DataFrame(data_list)
 
-    # Use file dialog to get the output path
-    tkinter.Tk().withdraw()  # Prevents an empty tkinter window from appearing
-    file_path = filedialog.asksaveasfilename(defaultextension=".xlsx", filetypes=[("Excel Files", "*.xlsx")])
-
-    # If the user didn't cancel the file dialog, save the DataFrame to Excel
-    if file_path:
-        df.to_excel(file_path, index=False)
+    df.to_excel(filePath, index=False)
 
 # Function to increase the quantity of an item
 def increase_quantity(lager_json, data, item_name, quantity_to_increase):
